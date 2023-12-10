@@ -1,51 +1,58 @@
-<?php include 'base.php' ?>
+<?php
+include 'utils/connect.php';
 
-<main>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-    <div class="inline-form-row">
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>User List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <!-- Add other columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            if (mysqli_num_rows($result) > 0) {
 
-        <h1>Users</h1>
-        <button> <i class="bi bi-plus"></i> Add User</button>
-    </div>
-    <div class="container">
-        <!--This will be replaced with php code-->
-        <table>
-            <tr>
-                <th>Company</th>
-                <th>Contact</th>
-                <th>Country</th>
-            </tr>
-            <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Centro comercial Moctezuma</td>
-                <td>Francisco Chang</td>
-                <td>Mexico</td>
-            </tr>
-            <tr>
-                <td>Ernst Handel</td>
-                <td>Roland Mendel</td>
-                <td>Austria</td>
-            </tr>
-            <tr>
-                <td>Island Trading</td>
-                <td>Helen Bennett</td>
-                <td>UK</td>
-            </tr>
-            <tr>
-                <td>Laughing Bacchus Winecellars</td>
-                <td>Yoshi Tannamuri</td>
-                <td>Canada</td>
-            </tr>
-            <tr>
-                <td>Magazzini Alimentari Riuniti</td>
-                <td>Giovanni Rovelli</td>
-                <td>Italy</td>
-            </tr>
-        </table>
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['id'] . "</td>";
+                    echo "<td>" . $row['firstname'] . "</td>";
+                    echo "<td>" . $row['lastname'] . "</td>";
+                    echo "<td>" . $row['email'] . "</td>";
+                    // Add other columns as needed
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='4'>No users found</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</body>
+</html>
 
-    </div>
-</main>
+<?php
+
+mysqli_close($connection);
+?>
