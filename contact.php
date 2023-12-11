@@ -1,10 +1,18 @@
 <?php
 include 'base.php';
-include './utils/connection.php'; // Ensure this path is correct
+include './utils/connection.php';
+session_start();
 
-// Fetch contacts from the database
-$sql = "SELECT * FROM Contacts";
-$result = $conn->query($sql);
+$loggedInUserId = $_SESSION['user_id'] ?? null;
+$filterType = $_GET['filterType'] ?? 'All';
+
+if ($filterType === 'Assigned to me' && $loggedInUserId) {
+    $sql = "SELECT * FROM Contacts WHERE assigned_to = $loggedInUserId";
+} else {
+    $sql = "SELECT * FROM Contacts";
+}
+
+$result = $conn->query($sql); //
 ?>
 
 <main>
@@ -15,10 +23,10 @@ $result = $conn->query($sql);
     <div class="container">
         <div class="inline-span-row">
             <span><strong><i class="bi bi-funnel-fill"></i> Filter By:</strong></span>
-            <span>All</span>
-            <span>Sales Lead</span>
-            <span>Support</span>
-            <span>Assigned to me</span>
+            <span class="filter-option">All</span>
+            <span class="filter-option">Sales Lead</span>
+            <span class="filter-option">Support</span>
+            <span class="filter-option">Assigned to me</span>
         </div>
         <table>
             <tr>

@@ -3,7 +3,7 @@ $(document).ready(function() {
     function loadUsers() {
         $.ajax({
             type: "GET",
-            url: "./utils/get_users.php", // Path to your PHP script that returns user data
+            url: "./utils/get_users.php",
             dataType: "json",
             success: function(response) {
                 if(response.status === 'success') {
@@ -36,20 +36,17 @@ $(document).ready(function() {
         var password = $("#password").val();
         var confirmPassword = $("#confirmPassword").val();
 
-        // Check if passwords match
         if (password !== confirmPassword) {
             Swal.fire({
                 title:'Error',
                 text:'Passwords do not match.',
                 icon:'error'
             });
-            return; // Stop the function if the passwords do not match
+            return;
         }
 
-        // Password complexity regex pattern
         var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*()_+}{:;'?/><,.-]{8,}$/;
 
-        // Check password complexity
         if (!passwordRegex.test(password)) {
             Swal.fire({
                 title:'Error',
@@ -58,10 +55,9 @@ $(document).ready(function() {
             });
 
 
-            return; // Stop the function if the password does not meet the complexity requirements
+            return;
         }
 
-        // If all validations pass, proceed with AJAX request
         $.ajax({
             type: "POST",
             url: "./utils/create_user.php",
@@ -125,11 +121,28 @@ $(document).ready(function() {
     $('span').each(function() {
         var text = $(this).text().trim();
 
-        if (text === 'SALES_LEAD') {
+        if (text === 'SALES LEAD') {
             $(this).addClass('sales-lead');
         } else if (text === 'SUPPORT') {
             $(this).addClass('support');
         }
     });
 
+    $('.filter-option').on('click', function() {
+        var filterType = $(this).text().trim();
+
+        $('.filter-option').removeClass('active-filter');
+        $(this).addClass('active-filter');
+
+        $.ajax({
+            type: "GET",
+            url: "contact.php",
+            data: { filterType: filterType },
+            success: function(response) {
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("Error: " + textStatus + ": " + errorThrown);
+            }
+        });
+    });
 });

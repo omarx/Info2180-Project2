@@ -46,8 +46,8 @@ include './utils/connection.php'
                 <div class="form-row">
                     <label for="type">Type</label>
                     <select name="type" id="type">
-                        <option value="sales_lead">Sales Lead</option>
-                        <option value="support">Support</option>
+                        <option value="SALES LEAD">Sales Lead</option>
+                        <option value="SUPPORT">Support</option>
                     </select>
                 </div>
             </div>
