@@ -1,9 +1,12 @@
-<?php include 'base.php'?>
+<?php
+include 'base.php';
+include './utils/connection.php'
+?>
 
 <main>
     <h1>New Contact</h1>
     <div class="container">
-        <form>
+        <form id="addContactForm" method="post" action="./utils/new_contact.php">
             <div class="inline-form-row">
                 <div class="form-row">
                     <label for="title">Title</label>
@@ -17,27 +20,28 @@
             <div class="inline-form-row">
                 <div class="form-row">
                     <label for="fname">First Name</label>
-                    <input type="text" name="fname" id="fname" placeholder="First Name"/>
+                    <input type="text" name="fname" id="fname" placeholder="First Name" required/>
                 </div>
                 <div class="form-row">
                     <label for="lname">Last Name</label>
-                    <input type="text" name="lname" id="lname" placeholder="Last Name"/>
+                    <input type="text" name="lname" id="lname" placeholder="Last Name" required/>
                 </div>
             </div>
             <div class="inline-form-row">
                 <div class="form-row">
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email" placeholder="Email"/>
+                    <input type="email" name="email" id="email" placeholder="Email" required/>
                 </div>
                 <div class="form-row">
                     <label for="telephone">Telephone</label>
-                    <input type="text" name="telephone" id="telephone" />
+                    <input type="tel" id="telephone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="123-456-7890"/>
+                    <small>Format: 123-456-7890</small>
                 </div>
             </div>
             <div class="inline-form-row">
                 <div class="form-row">
                     <label for="company">Company</label>
-                    <input type="text" name="company" id="company"/>
+                    <input type="text" name="company" id="company" required/>
                 </div>
                 <div class="form-row">
                     <label for="type">Type</label>
@@ -50,8 +54,7 @@
             <div class="form-row">
                 <label for="assigned">Assigned To</label>
                 <select name="assigned" id="assigned">
-                    <option value="omar_peart">Omar Peart</option>
-                    <option value="john_smith">John Smith</option>
+                    <!-- Options will be populated by jQuery -->
                 </select>
             </div>
             <div class="form-row">

@@ -77,11 +77,14 @@ main{
 
 }
 
-.form-row input[type="text"] {
+.form-row input[type="text"],input[type="password"],input[type="email"],input[type="tel"] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 90%; /* Make inputs full width */
+}
+.form-row #confirmPassword{
+    width:30%;
 }
 .form-row>select{
     padding: 10px;
@@ -158,18 +161,33 @@ table {
     width: 100%;
     margin-top:1%;
     margin-bottom:2% ;
+    border: 1px solid #f3f4f6;
+
 }
 
 td, th {
-    border: 1px solid #dddddd;
     text-align: left;
-    padding: 8px;
+    padding: 15px;
+}
+th {
+    background-color: #f3f4f6;
 }
 
-tr:nth-child(even) {
-    background-color: #dddddd;
+.sales-lead {
+    background-color: #fcd34d;
+    border-radius:5px;
+    padding: 5px 5px;
 }
 
+.support {
+    background-color: #4e46df;
+    border-radius:5px;
+    color:white;
+    padding: 5px 5px;
+}
+td>a{
+    text-decoration:none;
+}
 /* Add this media query for responsive design */
 @media (max-width: 768px) {
     .inline-form-row > div {

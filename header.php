@@ -15,6 +15,7 @@
         <h1>Dolphin CRM</h1>
     </nav>
 </header>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./assets/js/scripts.js">
 </script>
 
